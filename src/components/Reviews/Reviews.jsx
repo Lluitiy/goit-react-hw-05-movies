@@ -17,7 +17,9 @@ export const Reviews = () => {
 	const [reviews, setReviews] = useState(null);
 
 	useEffect(() => {
-		movieApiRreviews(movieId).then(({ results }) => setReviews(results));
+		movieApiRreviews(movieId)
+			.then(({ results }) => setReviews(results))
+			.catch(error => console.log(error));
 	}, [movieId]);
 
 	return (
@@ -51,7 +53,9 @@ export const Reviews = () => {
 					</Container>
 				</Section>
 			) : (
-				<h1>Unfortunately there are no rewiews yet</h1>
+				<Container>
+					<h1>Unfortunately there are no rewiews yet</h1>
+				</Container>
 			)}
 		</>
 	);

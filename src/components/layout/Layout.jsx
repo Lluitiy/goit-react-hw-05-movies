@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { BiCameraMovie, BiHomeHeart } from 'react-icons/bi';
 import { Header, Navigation, NavItem } from './Layout.styled';
+import { Spinner } from 'components/Spinner/Spinner';
 
 const Navi = [
 	{ href: 'home', text: 'Home', icon: <BiHomeHeart /> },
@@ -20,7 +22,9 @@ export const Layout = () => {
 					))}
 				</Navigation>
 			</Header>
-			<Outlet />
+			<Suspense fallback={<Spinner />}>
+				<Outlet />
+			</Suspense>
 		</>
 	);
 };

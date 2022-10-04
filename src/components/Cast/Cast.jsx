@@ -15,7 +15,7 @@ export const Cast = () => {
 	const { movieId } = useParams();
 	const [actors, setActors] = useState(null);
 	useEffect(() => {
-		movieApiCast(movieId).then(({ cast }) => setActors(cast.splice(0, 6)));
+		movieApiCast(movieId).then(({ cast }) => setActors(cast.splice(0, 6))).catch(error=>console.log(error));
 	}, [movieId]);
 
 	return (
@@ -38,7 +38,11 @@ export const Cast = () => {
 					</ActorsList>
 				</Container>
 			) : (
-				<h1>Unfortunately there is no actors data available for this movie</h1>
+				<Container>
+					<h1>
+						Unfortunately there are no actors data available for this movie
+					</h1>
+				</Container>
 			)}
 		</Section>
 	);

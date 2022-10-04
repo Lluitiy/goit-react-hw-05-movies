@@ -1,6 +1,6 @@
 import { movieApiById, IMG_PATH } from 'components/Api/Api';
-import { Outlet, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
 import {
 	Section,
 	Container,
@@ -12,7 +12,6 @@ import {
 	MovieOverview,
 	MovieReview,
 	MovieGenre,
-	GenreWrapper,
 	GenreList,
 	GenreItem,
 	Genre,
@@ -20,15 +19,23 @@ import {
 	ReviewItem,
 	Navigation,
 	ReviewText,
+	GoBackBtn,
+	GoBackIcon,
 } from './MovieDetails.styled';
+import { Spinner } from 'components/Spinner/Spinner';
 
 export const MovieDetails = () => {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState(null);
+
+	const location = useLocation();
+	const backRoute = location.state?.from ?? '/movies';
 	useEffect(() => {
-		movieApiById(movieId).then(r => {
-			setMovie(r);
-		});
+		movieApiById(movieId)
+			.then(r => {
+				setMovie(r);
+			})
+			.catch(error => console.log(error));
 	}, [movieId]);
 
 	return (
@@ -50,34 +57,47 @@ export const MovieDetails = () => {
 									<MovieOverview>Overview</MovieOverview>
 									<MovieReview>{movie.overview}</MovieReview>
 									<MovieGenre>Genres</MovieGenre>
-									<GenreWrapper>
-										{movie.genres.map(genre => {
+									<GenreList>
+										{movie.genres.map(({ name }) => {
 											return (
-												<GenreList>
-													<GenreItem>
-														<Genre>{genre.name}</Genre>
-													</GenreItem>
-												</GenreList>
+												<GenreItem key={name}>
+													<Genre>{name}</Genre>
+												</GenreItem>
 											);
 										})}
-									</GenreWrapper>
+									</GenreList>
 									<ReviewList>
 										<ReviewItem>
-											<Navigation to={'cast'}>
+											<Navigation
+												to={'cast'}
+												state={{ from: location.state?.from }}
+											>
 												<ReviewText>Cast</ReviewText>
 											</Navigation>
 										</ReviewItem>
 										<ReviewItem>
-											<Navigation to={'reviews'}>
+											<Navigation
+												to={'reviews'}
+												state={{ from: location.state?.from }}
+											>
 												<ReviewText>Reviews</ReviewText>
 											</Navigation>
+										</ReviewItem>
+										<ReviewItem>
+											<GoBackBtn to={backRoute}>
+												<ReviewText>
+													Go Back <GoBackIcon />
+												</ReviewText>
+											</GoBackBtn>
 										</ReviewItem>
 									</ReviewList>
 								</MetaWrapper>
 							</Wrapper>
 						</Container>
 					</Section>
-					<Outlet />
+					<Suspense fallback={<Spinner />}>
+						<Outlet />
+					</Suspense>
 				</>
 			)}
 		</>

@@ -1,5 +1,6 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { RiArrowGoBackLine } from 'react-icons/ri';
 
 export const Section = styled.section`
 	padding: 40px 0px;
@@ -69,13 +70,13 @@ export const MovieGenre = styled.h4`
 	background-color: black;
 `;
 
-export const GenreWrapper = styled.p`
+export const GenreWrapper = styled.p``;
+export const GenreList = styled.ul`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
 `;
-export const GenreList = styled.ul``;
 export const GenreItem = styled.li``;
 export const Genre = styled.p`
 	border-bottom: 1px solid orange;
@@ -92,7 +93,7 @@ export const Navigation = styled(NavLink)`
 	align-items: center;
 	font-size: 18px;
 	padding: 8px;
-	width: 100px;
+	width: 150px;
 	border-radius: 4px;
 	text-decoration: none;
 
@@ -114,5 +115,37 @@ export const Navigation = styled(NavLink)`
 	}
 	:hover:not(.active) {
 		background-color: rgb(255, 165, 0);
+	}
+`;
+
+export const GoBackBtn = styled(Link)`
+	display: flex;
+	align-items: baseline;
+
+	font-size: 18px;
+	padding: 8px;
+	width: 150px;
+	border-radius: 4px;
+	text-decoration: none;
+
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 165, 0);
+	border: none;
+	transition: 250ms color ease-in-out, 250ms background-color ease-in-out,
+		250ms border ease-in-out, 250ms transform ease-in-out;
+
+	:hover {
+		color: rgb(255, 165, 0);
+		background-color: rgb(0, 0, 0);
+	}
+`;
+
+export const GoBackIcon = styled(RiArrowGoBackLine)`
+	fill: rgb(0, 0, 0);
+	:hover {
+		fill: rgb(255, 165, 0);
+	}
+	GoBackBtn + GoBackIcon:hover {
+		fill: orange;
 	}
 `;
