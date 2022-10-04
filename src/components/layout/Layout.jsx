@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { BiCameraMovie, BiHomeHeart } from 'react-icons/bi';
+import { Header, Navigation, NavItem } from './Layout.styled';
 
 const Navi = [
 	{ href: 'home', text: 'Home', icon: <BiHomeHeart /> },
@@ -8,17 +9,18 @@ const Navi = [
 
 export const Layout = () => {
 	return (
-		<div>
-			<header>
-				<nav>
+		<>
+			<Header>
+				<Navigation>
 					{Navi.map(({ href, text, icon }) => (
-						<Link to={href} key={href}>
+						<NavItem to={href} key={href}>
 							{icon}
 							{text}
-						</Link>
+						</NavItem>
 					))}
-				</nav>
-			</header>
-		</div>
+				</Navigation>
+			</Header>
+			<Outlet />
+		</>
 	);
 };

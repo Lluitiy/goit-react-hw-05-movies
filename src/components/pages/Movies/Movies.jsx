@@ -1,10 +1,13 @@
-import { movieApi } from 'components/Api/Api';
+import { Outlet } from 'react-router-dom';
 
 export const Movies = () => {
-	movieApi().then(r => {
-		const movieName = r.original_title;
-		console.log(r);
-		return movieName;
-	});
-	return <ul>{}</ul>;
+	return (
+		<>
+			<form>
+				<input />
+				<button></button>
+			</form>
+			<Outlet />
+		</>
+	);
 };

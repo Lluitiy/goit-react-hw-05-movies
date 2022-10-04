@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import { Layout } from 'components/layout/Layout';
 import { Home } from 'components/pages/Home/Home';
 import { Cast } from 'components/Cast/Cast';
@@ -12,15 +12,14 @@ export const App = () => {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route path="home" element={<Home />} />
-					<Route path="movies" element={<Movies />} />
+					<Route path="movies" element={<Outlet />}>
+						<Route index element={<Movies />} />
+						<Route path=":movieId" element={<MovieDetails />}>
+							<Route path="cast" element={<Cast />} />
+							<Route path="reviews" element={<Reviews />} />
+						</Route>
+					</Route>
 				</Route>
-				{/* <Outlet /> */}
-				<Route>
-					<Route path="/movies/:movieId" element={<MovieDetails />} />
-					<Route path="/cast" element={<Cast />} />
-					<Route path="/reviews" element={<Reviews />} />
-				</Route>
-
 				<Route path="*" element={<div>Not Found</div>} />
 			</Routes>
 		</>
