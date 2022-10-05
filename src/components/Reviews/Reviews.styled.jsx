@@ -48,3 +48,10 @@ export const ReviewAuthor = styled.p`
 export const ReviewArticle = styled.article`
 	font-size: 16px;
 `;
+
+export const Message = styled.h2`
+	text-align: center;
+	color: orange;
+	font-weight: 600;
+	font-size: 18px;
+`;

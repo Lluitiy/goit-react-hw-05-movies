@@ -22,6 +22,7 @@ export const Layout = () => {
 					))}
 				</Navigation>
 			</Header>
+
 			<Suspense fallback={<Spinner />}>
 				<Outlet />
 			</Suspense>

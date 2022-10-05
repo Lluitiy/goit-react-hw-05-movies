@@ -9,13 +9,16 @@ import {
 	ActorsImg,
 	ActorsMeta,
 	ActorsInfo,
+	Message,
 } from './Cast.styled';
 
 export const Cast = () => {
 	const { movieId } = useParams();
 	const [actors, setActors] = useState(null);
 	useEffect(() => {
-		movieApiCast(movieId).then(({ cast }) => setActors(cast.splice(0, 6))).catch(error=>console.log(error));
+		movieApiCast(movieId)
+			.then(({ cast }) => setActors(cast.splice(0, 6)))
+			.catch(error => console.log(error));
 	}, [movieId]);
 
 	return (
@@ -39,9 +42,9 @@ export const Cast = () => {
 				</Container>
 			) : (
 				<Container>
-					<h1>
+					<Message>
 						Unfortunately there are no actors data available for this movie
-					</h1>
+					</Message>
 				</Container>
 			)}
 		</Section>

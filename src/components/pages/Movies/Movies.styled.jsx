@@ -83,3 +83,9 @@ export const MovieImg = styled.img`
 		filter: brightness(115%);
 	}
 `;
+
+export const Message = styled.h2`
+	color: orange;
+	font-weight: 600;
+	font-size: 18px;
+`;

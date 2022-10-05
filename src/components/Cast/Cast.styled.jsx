@@ -48,3 +48,9 @@ export const ActorsInfo = styled.p`
 	color: #ffa600ab;
 	text-decoration: underline orange;
 `;
+
+export const Message = styled.h2`
+	color: orange;
+	font-weight: 600;
+	font-size: 18px;
+`;

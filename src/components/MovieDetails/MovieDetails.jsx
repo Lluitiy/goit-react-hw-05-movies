@@ -27,18 +27,23 @@ import { Spinner } from 'components/Spinner/Spinner';
 export const MovieDetails = () => {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState(null);
+	// const [error, setError] = useState(null);
 
 	const location = useLocation();
 	const backRoute = location.state?.from ?? '/movies';
 	useEffect(() => {
 		movieApiById(movieId)
 			.then(r => {
+				// if (!r.ok) {
+				// 	throw new Error('qwerqwer');
+				// }
 				setMovie(r);
 			})
 			.catch(error => console.log(error));
 	}, [movieId]);
-
+	// console.log('error', error);
 	return (
+		// movie ? render : error ? <div>Error</div> : null
 		<>
 			{movie && (
 				<>
@@ -51,9 +56,7 @@ export const MovieDetails = () => {
 								/>
 								<MetaWrapper>
 									<MovieHead>{movie.title}</MovieHead>
-									<MovieScore>
-										User Score: {movie.vote_average.toFixed(2)}%
-									</MovieScore>
+									<MovieScore>User Score: {movie.vote_average}%</MovieScore>
 									<MovieOverview>Overview</MovieOverview>
 									<MovieReview>{movie.overview}</MovieReview>
 									<MovieGenre>Genres</MovieGenre>

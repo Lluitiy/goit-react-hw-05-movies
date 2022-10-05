@@ -9,6 +9,7 @@ import {
 	ReviewImg,
 	ReviewAuthor,
 	ReviewArticle,
+	Message,
 } from './Reviews.styled';
 
 export const Reviews = () => {
@@ -29,14 +30,7 @@ export const Reviews = () => {
 					<Container>
 						<ReviewList>
 							{reviews.map(
-								({
-									id,
-									author_details: {
-										avatar_path = 'https://via.placeholder.com/395x574',
-									},
-									author,
-									content,
-								}) => {
+								({ id, author_details: { avatar_path }, author, content }) => {
 									const ImgSrc = avatar_path
 										? `${avatar_path.slice(1, -1)}`
 										: `https://via.placeholder.com/395x574`;
@@ -54,7 +48,7 @@ export const Reviews = () => {
 				</Section>
 			) : (
 				<Container>
-					<h1>Unfortunately there are no rewiews yet</h1>
+					<Message>Unfortunately there are no rewiews yet</Message>
 				</Container>
 			)}
 		</>

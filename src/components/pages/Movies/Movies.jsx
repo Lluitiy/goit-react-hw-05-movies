@@ -1,8 +1,10 @@
-import { Link, Outlet, useLocation, useSearchParams } from 'react-router-dom';
-import { useState, useEffect, Suspense } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { movieApiQuery, IMG_PATH } from 'components/Api/Api';
 import { SearchBox } from 'components/SearchBox/SearchBox';
 import { Spinner } from 'components/Spinner/Spinner';
+import 'react-toastify/dist/ReactToastify.css';
 import {
 	Main,
 	Section,
@@ -14,6 +16,7 @@ import {
 	MovieList,
 	MovieItem,
 	MovieImg,
+	Message,
 } from './Movies.styled';
 
 export const Movies = () => {
@@ -41,11 +44,21 @@ export const Movies = () => {
 
 		setSpinner(true);
 		movieApiQuery(query)
-			.then(r => setMovies(r.results))
+			.then(r => {
+				setMovies(r.results);
+			})
 			.catch(error => console.log(error))
 			.finally(setSpinner(false));
-	}, [query]);
+		setTimeout(() => {
+			setTimeout(() => {
+				if (movies.length === 0) {
+					toast('Please enter valid Movie Name !');
+				}
+			}, 1000);
+		}, 2000);
 
+		// eslint-disable-next-line
+	}, [query]);
 	return (
 		<Main>
 			<Section>
@@ -79,16 +92,12 @@ export const Movies = () => {
 								);
 							})
 						) : (
-							<div>
-								<h2>Please enter the search query</h2>
-							</div>
+							<Message>Please enter the search query</Message>
 						)}
 					</MovieList>
 				</Container>
 			</Section>
-			<Suspense fallback={<Spinner />}>
-				<Outlet />
-			</Suspense>
+			<ToastContainer />
 		</Main>
 	);
 };

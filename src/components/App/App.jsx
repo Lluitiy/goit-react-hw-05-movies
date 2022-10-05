@@ -1,8 +1,7 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { lazy } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from 'components/layout/Layout';
 import { Home } from 'components/pages/Home/Home';
-import { Spinner } from 'components/Spinner/Spinner';
 
 const Movies = lazy(() =>
 	import('../pages/Movies/Movies').then(module => ({
@@ -35,25 +34,13 @@ export const App = () => {
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Navigate to="home" />} />
 					<Route path="home" element={<Home />} />
-					<Route
-						path="movies"
-						element={
-							<Suspense fallback={<Spinner />}>
-								<Outlet />
-							</Suspense>
-						}
-					>
-						<Route index element={<Movies />} />
-						<Route path=":movieId" element={<MovieDetails />}>
-							<Route path="cast" element={<Cast />} />
-							<Route path="reviews" element={<Reviews />} />
-						</Route>
+					<Route path="movies" element={<Movies />} />
+					<Route path="movies/:movieId" element={<MovieDetails />}>
+						<Route path="cast" element={<Cast />} />
+						<Route path="reviews" element={<Reviews />} />
 					</Route>
 				</Route>
-				<Route
-					path="*"
-					element={<div>An Error Occured restart the page please</div>}
-				/>
+				<Route path="*" element={<Navigate to="home" />} />
 			</Routes>
 		</>
 	);
