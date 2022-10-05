@@ -26,7 +26,9 @@ export const ReviewItem = styled.li`
 	justify-content: center;
 	padding: 32px;
 	gap: 32px;
+	background-color: lightgray;
 	border: 1px solid lightgray;
+	border-radius: 8px;
 `;
 export const ReviewImg = styled.img`
 	display: block;

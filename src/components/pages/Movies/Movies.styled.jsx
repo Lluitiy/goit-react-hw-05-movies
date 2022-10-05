@@ -69,7 +69,7 @@ export const MovieList = styled.ul`
 export const MovieItem = styled.li`
 	display: block;
 	width: 300px;
-	height: 300px;
+	height: 400px;
 `;
 export const MovieImg = styled.img`
 	display: block;

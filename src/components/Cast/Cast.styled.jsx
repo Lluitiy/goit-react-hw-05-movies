@@ -19,13 +19,14 @@ export const ActorsList = styled.ul`
 `;
 export const ActorsItem = styled.li`
 	width: 325px;
-	height: 325px;
+	height: 425px;
 	border-radius: 4px;
 `;
 export const ActorsImg = styled.img`
 	display: block;
 	width: 325px;
-	height: 285px;
+	height: 385px;
+	margin-bottom: 8px;
 	transition: 250ms box-shadow ease-in-out;
 	:hover {
 		box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -44,5 +45,6 @@ export const ActorsInfo = styled.p`
 	display: block;
 	font-size: 18px;
 	font-weight: 500;
+	color: #ffa600ab;
 	text-decoration: underline orange;
 `;

@@ -1,5 +1,13 @@
 import styled from '@emotion/styled';
 
+export const Heading = styled.h1`
+	font-size: 24px;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 30px;
+	color: rgb(255, 165, 0);
+`;
+
 export const MovieList = styled.ul`
 	list-style: none;
 	display: flex;
@@ -11,13 +19,14 @@ export const MovieList = styled.ul`
 
 export const MovieItem = styled.li`
 	display: block;
-	width: 300px;
-	height: 300px;
+	width: 250px;
+	height: 350px;
 `;
 export const MovieImg = styled.img`
 	display: block;
 	width: 100%;
 	height: 100%;
+	border-radius: 4px;
 
 	transition: 250ms transform ease-in-out, 250ms filter ease-in-out;
 
@@ -27,5 +36,5 @@ export const MovieImg = styled.img`
 	}
 `;
 export const Section = styled.section`
-	padding-bottom: 30px;
+	padding: 30px;
 `;

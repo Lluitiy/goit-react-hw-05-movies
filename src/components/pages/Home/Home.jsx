@@ -1,24 +1,31 @@
 import { useState, useEffect, Suspense } from 'react';
 import { movieApiTrend, IMG_PATH } from 'components/Api/Api';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-// import { Spinner } from 'components/Spinner/Spinner';
-import { Section, MovieList, MovieItem, MovieImg } from './Home.styled';
+import { Spinner } from 'components/Spinner/Spinner';
+import {
+	Section,
+	Heading,
+	MovieList,
+	MovieItem,
+	MovieImg,
+} from './Home.styled';
 
 export const Home = () => {
 	const [movie, setMovie] = useState([]);
-	// const [spinner, setSpinner] = useState(false);
+	const [spinner, setSpinner] = useState(false);
 	const location = useLocation();
 	useEffect(() => {
-		// setSpinner(true);
+		setSpinner(true);
 		movieApiTrend()
 			.then(r => setMovie(r.results))
-			.catch(error => console.log(error));
-		// .finally(setSpinner(false));
+			.catch(error => console.log(error))
+			.finally(() => setSpinner(false));
 	}, []);
 
 	return (
 		<Section>
-			{/* {spinner && <Spinner />} */}
+			<Heading>Weekly trends :) </Heading>
+			{spinner && <Spinner />}
 			<MovieList>
 				{movie.map(({ poster_path, title, id }) => (
 					<MovieItem key={poster_path}>

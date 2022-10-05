@@ -16,7 +16,7 @@ export const Header = styled.header`
 	padding-bottom: 12px;
 	backdrop-filter: blur(3px);
 	background-color: rgba(255, 165, 0, 0.4);
-	border-bottom: 1px solid lightgrey;
+	border-bottom: 1px solid orange;
 `;
 export const Navigation = styled.nav`
 	display: flex;

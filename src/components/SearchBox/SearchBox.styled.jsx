@@ -9,9 +9,10 @@ export const StyledInput = styled.input`
 	border-bottom-left-radius: 4px;
 	border-top-left-radius: 4px;
 	border: 1px solid rgb(255, 165, 0);
+	background-color: lightgoldenrodyellow;
 	:hover,
 	:focus {
-		outline: none;
+		outline: 1px solid white;
 		border: 1px solid rgb(255, 165, 0);
 	}
 `;

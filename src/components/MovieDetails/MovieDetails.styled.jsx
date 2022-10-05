@@ -18,12 +18,13 @@ export const Wrapper = styled.div`
 	padding: 16px;
 	gap: 16px;
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	background-color: #fff;
 `;
 
 export const MovieImg = styled.img`
 	display: block;
 	width: 400px;
-	height: 500px;
+	height: 550px;
 `;
 
 export const MetaWrapper = styled.div`

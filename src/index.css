@@ -1,6 +1,8 @@
 @import-normalize;
 
 body {
+  background-color: black;
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -58,7 +60,7 @@ p {
   height: 65px;
   width: 65px;
   top: 200px;
-  left: 600px;
+  left: 560px;
   position: relative;
   display: flex;
   flex-direction: row;
